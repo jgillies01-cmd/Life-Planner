@@ -399,7 +399,7 @@ export default function LifeOS() {
         ? allTe.map(e=>`${e.time||'?'}${e.endTime?'–'+e.endTime:''} ${e.title}`).join('; ')
         : 'none';
       const d = await aiCall({
-        model:'claude-sonnet-4-20250514', max_tokens:450,
+        model:'claude-sonnet-4-6', max_tokens:450,
         messages:[{role:'user',content:
           `Write a warm personal morning brief for ${name} in 2–3 short paragraphs. No bullet points.\n\nDate: ${dateStr}\nEvents today: ${evStr}\nGoals: ${activeGoals.length?activeGoals.map(g=>g.text).join('; '):'none set'}\nCalories so far: ${todayCals}/${calorieGoal} kcal\n\nPara 1: warm greeting + day overview. Para 2: key focus. Para 3: one practical tip + motivating close.`
         }]
@@ -418,7 +418,7 @@ export default function LifeOS() {
     try {
       const evStr = allTe.map(e=>`${e.time||''}${e.endTime?'–'+e.endTime:''} ${e.title}`).join(', ')||'none';
       const d = await aiCall({
-        model:'claude-sonnet-4-20250514', max_tokens:600,
+        model:'claude-sonnet-4-6', max_tokens:600,
         system:`You are a personal life planning assistant for ${name}. Be concise, warm and practical.\nToday: ${dateStr}\nGoals: ${activeGoals.map(g=>g.text).join(', ')||'none'}\nEvents: ${evStr}\nCalories: ${todayCals}/${calorieGoal}`,
         messages:msgs.map(m=>({role:m.role,content:m.content}))
       });
